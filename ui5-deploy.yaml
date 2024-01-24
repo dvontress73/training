@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: tw.replytable.maintainreplytable
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: abap-cloud-abap-free-dvtconsulting_freeplan-takm41tp-dev
+          url: https://3cec518a-3940-45da-b01b-30e1ccbd4cb6.abap.us10.hana.ondemand.com
+          scp: true
+        app:
+          name: ZREPLYTAB_APP
+          description: Maintan Replytable
+          package: ZMRC_REPLYTABLE
+          transport: H01K900042
+        exclude:
+          - /test/
